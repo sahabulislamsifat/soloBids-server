@@ -60,6 +60,27 @@ app.delete("/job/:id", async (req, res) => {
   res.send(result);
 });
 
+// get single data for update
+app.get("/job-update/:id", async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: new ObjectId(id) };
+  const result = await jobsCollection.findOne(query);
+  res.send(result);
+});
+
+// Update a job Data in DB
+app.put("/update-job/:id", async (req, res) => {
+  const id = req.params.id;
+  const jobData = req.body;
+  const update = {
+    $set: jobData,
+  };
+  const query = { _id: new ObjectId(id) };
+  const result = await jobsCollection.updateOne(query, update);
+  res.send(result);
+  console.log(result);
+});
+
 // Server Listening
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
