@@ -15,7 +15,7 @@ databaseConnection();
 
 // Middleware
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173", "https://solo-bids-client.vercel.app"],
   credentials: true,
   optionalSuccessStatus: 200,
 };
